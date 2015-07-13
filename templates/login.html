@@ -1,0 +1,38 @@
+<ion-view title="Sign In">
+	<ion-content>
+		<div>
+			<div class="list card">
+
+			  <div class="item item-avatar">
+			    <img class="full-image" src="img/jamshi.jpg">
+			    <h2>Jamshid K</h2>
+			    <h3>Developer @ Bee Orchid Infosys,
+			    	Dubai
+				</h3>
+				<p>Odoo Erp Programmer</p>
+			    <p> +971 525544749</p>
+			    <p>jamshu.mkd@gmail.com</p>
+  			</div>
+			<div class="list list-inset">
+				<label ng-hide="authData" class="item item-input padding">
+					<input  ng-model="username" type="text" placeholder="Username" />
+				</label>
+				<label ng-hide="authData" class="item item-input">
+					<input ng-model="password" type="password" placeholder="Password" />
+				</label>
+			</div>
+			<div>
+			<div class="button-bar">
+				<button ng-hide="authData" ng-click="login(username,password)" class="button button-positive">Login</button>
+				<button ng-show="authData" ng-click="logout()" class="button button-balanced">Logout</button>
+				<div>
+				<button ng-click="regnav()">Register</button>
+  				</div>
+			</div>
+			
+			
+			
+		</div>
+	</ion-content>
+
+</ion-view>

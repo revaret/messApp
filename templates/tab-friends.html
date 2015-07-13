@@ -1,0 +1,31 @@
+<ion-view title="Room Mate's Expenses">
+  <ion-content>
+    <ion-list>
+    
+     <table class="table table-condensed">
+     <thead>
+       <tr class="info">
+         <td>Roomie</td>
+         <td>Item</td>
+         <td>Cost</td>
+       </tr>
+     </thead>
+     <tbody>
+      <tr ng-repeat="expense in expenses">
+       <td>{{ expense.by.split("@")[0] }}</td>
+       <td>{{expense.label}}</td>
+       <td>{{expense.cost}}</td>
+       </tr>
+     </tbody>
+     </table>
+    </ion-list>
+    <div class="card assertive">
+      <div class="item item-text-wrap">
+        Total Spent <span class="badge badge-positive">{{getTotal()}}</span>
+      </div>
+    </div>
+  </ion-content>
+  <ion-footer-bar>
+    
+  </ion-footer-bar>
+</ion-view>
