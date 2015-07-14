@@ -26,3 +26,14 @@ angular.module('starter.controllers', ['firebase'])
     enableFriends: true
   };
 })
+
+.controller('navigateCtrl',function($scope,$rootScope,store,$location){
+
+  if(store.get('authflag')){
+    $location.path('/tab/login')
+  }
+  else{
+    $location.path('/tab/dash')
+  }
+
+})

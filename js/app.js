@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var app=angular.module('starter', ['ionic', 'firebase','starter.controllers', 'starter.services'])
+var app=angular.module('starter', ['ionic', 'firebase','starter.controllers', 'starter.services','angular-storage'])
 
 
 
@@ -127,11 +127,22 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'AccountCtrl'
       }
     }
-  });
+  })
+
+.state('tab.navigate', {
+    url: '/navigate',
+    views: {
+      'tab-account': {
+        controller: 'navigateCtrl'
+      }
+    }
+  })
+
+  ;
  
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/login');
+  $urlRouterProvider.otherwise('/tab/navigate');
 
 })
 app.constant('FirebaseUrl', 'https://jamshichat.firebaseio.com/')
@@ -187,7 +198,7 @@ app.controller('FriendsCtrl',function($scope,$firebaseArray){
 
 });
 
-app.controller('AuthCtrl',function($scope,Auth,$ionicPopup,$location){
+app.controller('AuthCtrl',function($scope,Auth,$ionicPopup,$location,store){
  
  Auth.$onAuth(function(authData) {
     $scope.authData = authData;
@@ -237,6 +248,7 @@ app.controller('AuthCtrl',function($scope,Auth,$ionicPopup,$location){
     .then(function(authData){
      
       $location.path("/tab/dash");
+      store.set('authflag',true)
     },function(error){
     $scope.showAlert(error);
     });
@@ -247,6 +259,7 @@ app.controller('AuthCtrl',function($scope,Auth,$ionicPopup,$location){
    $scope.logout = function() {
     Auth.$unauth();
     console.log("logged Out")
+    store.set('authflag',false)
   };
 
 });
